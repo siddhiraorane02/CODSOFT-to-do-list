@@ -1,0 +1,48 @@
+t=[]
+def create():
+    task = input("Enter your task: ")
+    t.append(task)
+    print("Added successfully")
+def show_list():
+    if len(t)==0:
+        print("No tasks.")
+    else:
+        print("\nTo-Do Lists: ",*t,sep="\n")
+def update():
+    task1 = input("Enter your task: ")
+    s=input("Select task you want to update: ")
+    for i in range(len(t)):
+        if t[i] == s:
+            t[i] = task1
+def save_tasks():
+    f1= open("tasks.txt", "w")
+    for tt in t:
+        f1.write(tt + "\n")
+
+def load_tasks():
+    try:
+        f2=open("tasks.txt", "r")
+        t2 = f2.readlines()
+        for i,line in enumerate(t2):
+            print(i+1,line.strip())
+    except FileNotFoundError:
+        print("Error: File not found.")
+  
+ch=0
+while(ch!=6):
+    print("\n\n1.Create \n2.Show List \n3.Update \n4.Save_tasks \n5.load_tasks \n6.Exit")
+    ch=int(input("\nEnter Your Choice: "))
+
+    match ch:
+        case 1:
+            create()
+        case 2:
+            show_list()
+        case 3:
+            update()
+        case 4:
+            save_tasks()
+        case 5:
+            load_tasks()
+        case _:
+            print("Incorrect Choice")
